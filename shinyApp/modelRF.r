@@ -1,4 +1,5 @@
 library(caret)
+library(randomForest)
 
 # loading data and setting seed
 data(mtcars)
