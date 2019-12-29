@@ -22,12 +22,12 @@ slides > slide:not(.nobackground):after {
 ## Introduction
  - This presentation is part of final project of the Developing Data Products course.
  - It contains a short pitch and supplementary information about the shiny app that was also build as part of the project.
- - The presentation was written in the *R Markdown* language in conjunction with the [*ioslides*](https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html) framework and compiled with [*RStudio*](<https://www.rstudio.com>).
+ - The presentation was written in the *R Markdown* language in conjunction with the [ioslides](https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html) framework and compiled with [RStudio](<https://www.rstudio.com>).
  - Note: some slide are scrollable.
- - Links: [project: presentation](https://xburaw.github.io/ds-course9-project-w3/presentation.html) / [project: shiny web app](https://xburaw.shinyapps.io/shinyapp/)
+ - Links: [project: presentation](https://xburaw.github.io/ds-course9-project-w4/presentation.html) / [project: shiny web app](https://xburaw.shinyapps.io/shinyapp/)
 
 ## Application
- - The main focus of the project was to develop a [*shiny*](https://shiny.rstudio.com/) application. The shiny web app has the title **C9W4: ShinyApp Project** and is hosted at [shinyapps.io](https://www.shinyapps.io/).
+ - The main focus of the project was to develop a [shiny](https://shiny.rstudio.com/) application. The shiny web app has the title **C9W4: ShinyApp Project** and is hosted at [shinyapps.io](https://www.shinyapps.io/).
  - The *shiny* framework is a complete suite to create web apps in the R language and is therefore very useful for data analysts already versed in R.
  - The application has three parts:
     1. A exploratory part where the data set can be analysed via different interactively requested plots.
@@ -47,7 +47,7 @@ A short overview of the structure of the dataset:
 str(mtcars)
 ```
 ## Prediction
-I chose a simple random forest prediction algorithm beccause of its relative simplicity and high accury it delivers, while still being performant.  
+I chose a random forest prediction algorithm because of its relative simplicity and high accury it delivers, while still being performant.  
 The goal for the model is to accuratly predict the `mpg` variable using the rest of the variables as predictors. Using cross validation the model is trained on the whole data set.
 
 ```{r echo = FALSE}
