@@ -1,0 +1,81 @@
+---
+title: "Developing Data Products Week 4: Shiny Application and Reproducible Pitch"
+author: "xbuRAw (GH)"
+date: "December 30, 2019"
+geometry: margin=2cm
+output: ioslides_presentation
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = TRUE, echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+<style>
+slides > slide {
+  overflow-x: auto !important;
+  overflow-y: auto !important;
+}
+slides > slide:not(.nobackground):after {
+  content: '';
+}
+</style>
+
+## Introduction
+ - This presentation is part of final project of the Developing Data Products course.
+ - It contains a short pitch and supplementary information about the shiny app that was also build as part of the project.
+ - The presentation was written in the *R Markdown* language in conjunction with the [*ioslides*](https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html) framework and compiled with [*RStudio*](<https://www.rstudio.com>).
+ - Note: some slide are scrollable.
+ - Links: [project: presentation](https://xburaw.github.io/ds-course9-project-w3/presentation.html) / [project: shiny web app](https://xburaw.shinyapps.io/shinyapp/)
+
+## Application
+ - The main focus of the project was to develop a [*shiny*](https://shiny.rstudio.com/) application. The shiny web app has the title **C9W4: ShinyApp Project** and is hosted at [shinyapps.io](https://www.shinyapps.io/).
+ - The *shiny* framework is a complete suite to create web apps in the R language and is therefore very useful for data analysts already versed in R.
+ - The application has three parts:
+    1. A exploratory part where the data set can be analysed via different interactively requested plots.
+    2. A trained random forest model can be used to make predictions for the MPG (miles per gallon) of a car based on interactivly adjusted parameters.
+    3. Documentation and other helpful information about the app can be found in the Documentation tab of the app.
+ - The source code for the web application is hosted in [this repository](https://github.com/xbuRAw/ds-course9-project-w4) on github. And consists out of the files `ui.r`, `server.r` and `modelRF.r` in the `/shinyApp` folder.
+  
+## Dataset
+The [mtcars](https://www.rdocumentation.org/packages/datasets/versions/3.6.1/topics/mtcars) data set
+is part of the base R package and consists of 32 observations of 11 variables (properties of different cars).
+Originally the data was extracted from the Motor Trend US magazine in 1974.  
+* Henderson & Velleman, Building Multiple Regression Models Interactively (1981)"  
+
+A short overview of the structure of the dataset:
+
+```{r}
+str(mtcars)
+```
+## Prediction
+I chose a simple random forest prediction algorithm beccause of its relative simplicity and high accury it delivers, while still being performant.  
+The goal for the model is to accuratly predict the `mpg` variable using the rest of the variables as predictors. Using cross validation the model is trained on the whole data set.
+
+```{r echo = FALSE}
+library(caret)
+set.seed(111)
+```
+A short summary of the trained model can be seen in the output of the following cell.
+
+```{r}
+# the training function
+rfTrain <- function() {
+  return(
+    train(mpg ~ ., data = mtcars, method = "rf",
+      trControl = trainControl(method = "cv", number = 10)
+    )
+  )
+}
+
+# the prediction function 
+rfPredict <- function(model, carParameters) {
+  prediction <- predict(model, newdata = carParameters)
+  return(prediction)
+}
+
+rfTrain()
+```
+
+## Thank you
+Have a nice day!  
+
+xbuRAw(GH), December 2019
